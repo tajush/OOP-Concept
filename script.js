@@ -34,12 +34,10 @@ console.log("Factory Function", circle2.calculateArea()); // Output: 153.9380400
 
 const circle3 = new Circle(10);
 console.log("Constructor", circle3.calculateArea()); // Output: 314.1592653589793
-class Circle{
-   constructor(radius){
-      this.radius = radius;
-      this.calculateArea = function() {
-          return Math.PI * this.radius ** 2;
-      }
+function Circle(radius){
+   this.radius= radius;
+   this.calculateArea= function() {
+       return Math.PI * this.radius ** 2;
    }
 }
 
