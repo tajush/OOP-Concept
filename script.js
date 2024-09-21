@@ -49,6 +49,7 @@ console.log("Constructor", constructorCircle.calculateArea()); // Output: 314.15
 */
 
 // Constructor property in factory function
+// Factory function do not create instances. It return object literal and constructor points to the object itself.
 function createCircle(radius) {
    return {
       radius,
@@ -60,3 +61,18 @@ function createCircle(radius) {
 
 const circle1 = createCircle(5);
 console.log(circle1.constructor); // Output: ƒ Object() { [native code] }
+
+
+// Constructor property in class or constructor function
+// A class or constructor function create a instance of the object because of new keyword. So implicitly that object created from constructor prototype and automatically it's constructor property point to that prototype that was responsible to create that object.
+class Circle {
+   constructor(radius) {
+      this.radius = radius;
+      this.calculateArea = function() {
+          return Math.PI * this.radius ** 2;
+      };
+   }
+}
+
+const circle2 = new Circle(7);
+console.log(circle2.constructor); // Output: ƒ Circle(radius) { ... }
