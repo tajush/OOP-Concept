@@ -9,7 +9,7 @@ const circle ={
     }
 }
 
-console.log(circle.calculateArea()); // Output: 78.53981633974483
+console.log("Object Literal", circle.calculateArea()); // Output: 78.53981633974483
 
 /*
 * Factory function
@@ -25,18 +25,21 @@ const createCircle = function(radius){
 }
 
 const circle2 = createCircle(7);
-console.log(circle2.calculateArea()); // Output: 153.93804002589985
+console.log("Factory Function", circle2.calculateArea()); // Output: 153.93804002589985
 
 /*
 * Constructor function
 * A constructor function is a function that is used to create objects. It's used to initialize properties and methods.
 */
-function Circle(radius){
-   this.radius= radius;
-   this.calculateArea= function() {
-       return Math.PI * this.radius ** 2;
+
+class Circle{
+   constructor(radius){
+      this.radius = radius;
+      this.calculateArea = function() {
+          return Math.PI * this.radius ** 2;
+      }
    }
 }
 
 const circle3 = new Circle(10);
-console.log(circle3.calculateArea()); // Output: 314.1592653589793
+console.log("Constructor", circle3.calculateArea()); // Output: 314.1592653589793
