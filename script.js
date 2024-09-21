@@ -2,14 +2,14 @@
 * Object literal syntax
 * In this syntax it harder to share functionality across objects. This can result in code duplication and limited reusability.
 */
-const circle ={
+const literalCircle ={
     radius: 5,
     calculateArea: function() {
         return Math.PI * this.radius ** 2;
     }
 }
 
-console.log("Object Literal", circle.calculateArea()); // Output: 78.53981633974483
+console.log("Object Literal", literalCircle.calculateArea()); // Output: 78.53981633974483
 
 /*
 * Factory function
@@ -24,20 +24,39 @@ const createCircle = function(radius){
   }
 }
 
-const circle2 = createCircle(7);
-console.log("Factory Function", circle2.calculateArea()); // Output: 153.93804002589985
+const factoryCircle = createCircle(7);
+console.log("Factory Function", factoryCircle.calculateArea()); // Output: 153.93804002589985
 
 /*
 * Constructor function
 * A constructor function is a function that is used to create objects. It's used to initialize properties and methods.
 */
-
-const circle3 = new Circle(10);
-console.log("Constructor", circle3.calculateArea()); // Output: 314.1592653589793
-function Circle(radius){
-   this.radius= radius;
-   this.calculateArea= function() {
-       return Math.PI * this.radius ** 2;
+class Circle{
+   constructor(radius){
+      this.radius = radius;
+      this.calculateArea = function() {
+          return Math.PI * this.radius ** 2;
+      }
    }
 }
 
+const constructorCircle = new Circle(10);
+console.log("Constructor", constructorCircle.calculateArea()); // Output: 314.1592653589793
+
+/*
+* Constructor property
+* The constructor property is a special property available on all objects in JavaScript that refers to the function or class that was used to create the instance of the object. Essentially, it points to the "blueprint" that was responsible for building that object.
+*/
+
+// Constructor property in factory function
+function createCircle(radius) {
+   return {
+      radius,
+      calculateArea: function() {
+          return Math.PI * radius ** 2;
+      }
+   };
+}
+
+const circle1 = createCircle(5);
+console.log(circle1.constructor); // Output: ƒ Object() { [native code] }
