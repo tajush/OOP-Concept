@@ -32,6 +32,8 @@ console.log("Factory Function", circle2.calculateArea()); // Output: 153.9380400
 * A constructor function is a function that is used to create objects. It's used to initialize properties and methods.
 */
 
+const circle3 = new Circle(10);
+console.log("Constructor", circle3.calculateArea()); // Output: 314.1592653589793
 class Circle{
    constructor(radius){
       this.radius = radius;
@@ -41,5 +43,3 @@ class Circle{
    }
 }
 
-const circle3 = new Circle(10);
-console.log("Constructor", circle3.calculateArea()); // Output: 314.1592653589793
