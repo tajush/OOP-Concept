@@ -2,6 +2,8 @@
 * Object literal syntax
 * In this syntax it harder to share functionality across objects. This can result in code duplication and limited reusability.
 */
+
+
 const literalCircle ={
     radius: 5,
     calculateArea: function() {
@@ -76,3 +78,37 @@ class Circle {
 
 const circle2 = new Circle(7);
 console.log(circle2.constructor); // Output: ƒ Circle(radius) { ... }
+
+// Constructor Function (Traditional Approach)
+function Personn(name, age) {
+   this.name = name;
+   this.age = age;
+}
+
+Personn.prototype.greet = function() {
+   console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+};
+
+const person1 = new Personn("John", 30);
+const person2 = new Personn("Alice", 25);
+
+person1.greet();
+person2.greet();
+
+// Class Syntax (ES6 Approach)
+class Person {
+   constructor(name, age) {
+      this.name = name;
+      this.age = age;
+   }
+
+   greet() {
+      console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+   }
+}
+
+const person11 = new Person("John", 30);
+const person21 = new Person("Alice", 25);
+
+person11.greet();
+person21.greet();
