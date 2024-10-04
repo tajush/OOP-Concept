@@ -1,39 +1,55 @@
-// 
+/*
+* Object literal syntax
+* In this syntax it harder to share functionality across objects. This can result in code duplication and limited reusability.
+*/
+const literalCircle ={
+    radius: 5,
+    calculateArea: function() {
+        return Math.PI * this.radius ** 2;
+    }
+}
 
-// const minutes={
-//    seconds:120,
-//   getTimeInMinutes(){
-//       return this.seconds /60
-//    }
-// }
-// console.log(minutes.getTimeInMinutes(),"minutes");
+console.log("Object Literal", literalCircle.calculateArea()); // Output: 78.53981633974483
 
-const minutes1=function(seconds){
-   return{
-      seconds,
-      getTimeInMinutes(){
-         return this.seconds/60
+/*
+* Factory function
+* A factory function is a function that returns a new object. Unlike constructors, It don't use the new keyword
+*/
+const createCircle = function(radius){
+   return {
+      radius: radius,
+      calculateArea: function() {
+          return Math.PI * this.radius ** 2;
+      }
+  }
+}
+
+const factoryCircle = createCircle(7);
+console.log("Factory Function", factoryCircle.calculateArea()); // Output: 153.93804002589985
+
+/*
+* Constructor function
+* A constructor function is a function that is used to create objects. It's used to initialize properties and methods.
+*/
+class Circle{
+   constructor(radius){
+      this.radius = radius;
+      this.calculateArea = function() {
+          return Math.PI * this.radius ** 2;
       }
    }
-
-
 }
- 
- console.log(minutes1(60).constructor);
-// console.log(timeObject.getTimeInMinutes());
 
+const constructorCircle = new Circle(10);
+console.log("Constructor", constructorCircle.calculateArea()); // Output: 314.1592653589793
 
-class calculateMinutes{
-   constructor(seconds){
-      this.seconds=seconds;
-      this.getMinutes=function(){
-         return this.seconds/60
-      }
+/*
+* Constructor property
+* The constructor property is a special property available on all objects in JavaScript that refers to the function or class that was used to create the instance of the object. Essentially, it points to the "blueprint" that was responsible for building that object.
+*/
 
-   }
-}
-const timeObject=new calculateMinutes(60)
-console.log(timeObject.constructor);
+// Constructor property in factory function
+// Factory function do not create instances. It return object literal and constructor points to the object itself.
 function createCircle(radius) {
    return {
       radius,
@@ -44,35 +60,19 @@ function createCircle(radius) {
 }
 
 const circle1 = createCircle(5);
-console.log(circle1.constructor); 
+console.log(circle1.constructor); // Output: ƒ Object() { [native code] }
 
+
+// Constructor property in class or constructor function
+// A class or constructor function create a instance of the object because of new keyword. So implicitly that object created from constructor prototype and automatically it's constructor property point to that prototype that was responsible to create that object.
 class Circle {
    constructor(radius) {
       this.radius = radius;
-     
+      this.calculateArea = function() {
+          return Math.PI * this.radius ** 2;
+      };
    }
- calculateArea () {
-      return Math.PI * this.radius ** 2;
-  };
 }
 
 const circle2 = new Circle(7);
-console.log(circle2.calculateArea()); 
-
-class person{
-   constructor(name,age){
-   this.name=name,
-   this.age=age}
-}
-person.prototype.greet = function() {
-   console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
-};
-const person3=new person('tajus',22);
-// Creating instances of Person
-const person1 = new person("John", 30);
-const person2 = new person("Alice", 25);
-person3.greet()
-
-// Using the prototype method
-person1.greet(); // Output: Hello, my name is John and I am 30 years old.
-person2.greet(); // Output: Hello, my name is Alice and I am 25 years old.
+console.log(circle2.constructor); // Output: ƒ Circle(radius) { ... }
